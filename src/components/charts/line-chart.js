@@ -5,19 +5,38 @@ import {
   YAxis,
   HorizontalGridLines,
   VerticalGridLines,
-  LineSeries } from 'react-vis';
+  LineSeries,
+  DiscreteColorLegend
+} from 'react-vis';
 import { curveCatmullRom } from 'd3-shape';
 
-export default () => (
+
+export default ({ data, xTitle = 'X Axis', yTitle = 'Y Axis', width = 300, height= 300}) => (
 
   <XYPlot
-    width={300}
-    height={300}>
+    width={width}
+    height={height}>
     <HorizontalGridLines />
     <VerticalGridLines />
-    <XAxis title="X Axis" position="start" />
-    <YAxis title="Y Axis" />
-    <LineSeries
+    <XAxis title={xTitle} position="middle" />
+    <YAxis title={yTitle} />
+    {
+      data.map((lineData,index) => (
+        <LineSeries
+          key={index}
+          curve={'curveMonotoneX'}
+          data={lineData.datapoints} />
+      ))
+
+    }
+    <DiscreteColorLegend
+      orientation="horizontal"
+      width={300}
+      items={
+        data.map( item => item.lineTitle)
+      }
+    />
+    {/* <LineSeries
       className="first-series"
       data={[
         { x: 1, y: 3 },
@@ -50,6 +69,6 @@ export default () => (
         { x: 2, y: 11 },
         { x: 3, y: 9 },
         { x: 4, y: 2 }
-      ]} />
+      ]} /> */}
   </XYPlot>
 );

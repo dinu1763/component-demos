@@ -7,6 +7,8 @@
     "d3": "^5.5.0",
     "grommet": "^1.11.0",
     "prop-types": "^15.6.2",
+    "random-object-generator": "^1.0.2",
+    "random-words": "^1.1.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
